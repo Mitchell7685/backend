@@ -6,18 +6,20 @@ const app = express()
 const router = express.Router()
 
 // start the web server app.listen(portnumber,function)
-app.listen(3000,function(){
-    console.log("listening on port 3000")
-})
 
 // making an api using routs
 // Routs are used to handle browser request
 
-// GET or a regular request
-app.get("/hello", function(req,res){
-    res.send("<h1>Hello Express</h1>")
-});
+router.get("/songs", function(req,res){
+    const song = {
+        title: "Uptown Funk",
+        artist: "Bruno Mars",
+        popularity: 1,
+        genre: ["pop", "dance"]
+    }
 
-app.get("/goodbye", function(req,res){
-    res.send("<h1>Goodbye Express</h1>");
-});
+    res.json(song)
+})
+
+app.use("/api", router)
+app.listen(3000)
